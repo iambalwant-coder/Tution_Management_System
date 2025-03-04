@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-6Ry4aU4tDD24v6XU5b/Vu6rHfbmGd6bO2G7ELGHfJnM0al6b6xsh0B5fTK7hG98CH7IMsy+dF0b5x7ZAZ+zDbg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #49243E; /* Darker background color */
+            color: #fff; /* Text color */
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center; /* Center-align text in table cells */
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: #666;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #e50914; /* Netflix red */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #b2070c; /* Darker red on hover */
+        }
+
+        .btn i {
+            margin-right: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e50914; /* Netflix red for heading */
+            margin-bottom: 20px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="btn-container">
+            <a href="{% url 'add1' %}" class="btn"><i class="fas fa-plus"></i> Add Method-1</a>
+            <a href="{% url 'add2' %}" class="btn"><i class="fas fa-plus"></i> Add Method-2</a>
+            <a href="/" class="btn"><i class="fas fa-plus"></i> Delete Method-2</a>
+            <a href="/" class="btn"><i class="fas fa-home"></i> Home</a>
+        </div>
+
+        <h1>Student Information</h1>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Total Fee</th>
+                        <th>Paid Fee</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ student.student_id }}</td>
+                        <td>{{ student.student_name }}</td>
+                        <td>{{ student.student_age }}</td>
+                        <td>{{ student.student_gender }}</td>
+                        <td>{{ student.total_fee }}</td>
+                        <td>{{ student.paid_fee }}</td>
+                        <td class="btn-container">
+                            <form action="{% url 'delete1' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ student.student_id }}">
+                                <input type="submit" value="Delete1" class="btn btn-denger btn-sm">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

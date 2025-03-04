@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-6Ry4aU4tDD24v6XU5b/Vu6rHfbmGd6bO2G7ELGHfJnM0al6b6xsh0B5fTK7hG98CH7IMsy+dF0b5x7ZAZ+zDbg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #519872; /* Dark background color */
+            color: #fff; /* Text color */
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #141414; /* Darker background color */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .btn {
+            background-color: #e50914; /* Netflix red */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .header .btn:hover {
+            background-color: #b2070c; /* Darker red on hover */
+        }
+
+        .header .btn:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .form-container {
+            background-color: #2f2f2f; /* Dark input background color */
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #fff; /* Label text color */
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+            background-color: #4f4f4f; /* Input background color */
+            color: #fff; /* Input text color */
+        }
+
+        .form-group button {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #b2070c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="{% url 'add1' %}" class="btn"><i class="fas fa-plus"></i> Add Method-1</a>
+            <a href="{% url 'delete1' %}" class="btn"><i class="fas fa-trash-alt"></i> Delete Method-1</a>
+            <a href="/" class="btn"><i class="fas fa-plus"></i> Delete Method-2</a>
+            <a href="/" class="btn"><i class="fas fa-home"></i> Home</a>
+        </div>
+
+        <div class="form-container">
+            <h2 style="text-align: center;">Add Student</h2>
+            
+            <form method="post" action="/edit/{{student_id}}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="student_id">Student ID:</label>
+                    <input type="text" id="student_id" name="student_id" required value="{{students.student_id}}">
+                </div>
+                <div class="form-group">
+                    <label for="student_name">Name:</label>
+                    <input type="text" id="student_name" name="student_name" required value="{{students.student_name}}">
+                </div>
+                <div class="form-group">
+                    <label for="student_age">Age:</label>
+                    <input type="number" id="student_age" name="student_age" required value="{{students.student_age}}">
+                </div>
+                <div class="form-group">
+                    <label for="student_gender">Gender:</label>
+                    <input type="number" id="student_gender" name="student_gender" required value="{{student_gender}}">
+                </div>
+                <div class="form-group">
+                    <label for="total_fee">Total Fee:</label>
+                    <input type="number" id="total_fee" name="total_fee" required value="{{students.total_fee}}">
+                </div>
+                <div class="form-group">
+                    <label for="paid_fee">Paid Fee:</label>
+                    <input type="number" id="paid_fee" name="paid_fee" required value="{{students.paid_fee}}">
+                </div>
+                
+                <div class="form-group" style="text-align: center;">
+                    <button type="submit"><i class="fas fa-plus"></i> Update </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
